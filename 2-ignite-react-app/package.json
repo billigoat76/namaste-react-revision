@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "2nd day of revising react where we gonna revise how to ignite an application with bundler(parcel)",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build" : "parcel build index.html"
   },
   "author": "vaibhav",
   "license": "ISC",
