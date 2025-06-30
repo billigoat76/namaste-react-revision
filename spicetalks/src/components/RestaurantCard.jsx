@@ -1,29 +1,36 @@
-import React from 'react';
 
-export default function RestaurantCard({resData}) {
-  const {resName,avgRating,deliveryTime,cuisines,costForTwo} = resData;
+export default function RestaurantCard({ resData }) {
+  const { name, avgRating, sla, cuisines, costForTwo, cloudinaryImageId } = resData;
+  const imageUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`;
+
   return (
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 overflow-hidden w-72">
+    <div className="w-72 bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
       {/* Image */}
-      <img
-        // src={imageUrl}
-        alt={resName}
-        className="h-44 w-full object-cover"
-      />
+      <div className="h-44 w-full bg-gray-100">
+        <img
+          src={imageUrl}
+          alt={name}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       {/* Content */}
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-gray-800 mb-1">{resName}</h3>
-        <h5 className="text-lg font-bold text-gray-800 mb-1">{cuisines}</h5>
-        <div className="flex items-center text-sm text-gray-600 mb-2">
-          <span className="bg-green-500 text-white px-2 py-0.5 rounded mr-2 font-semibold">
+      <div className="p-4 flex flex-col gap-1.5">
+        <div className="flex justify-between items-start">
+          <h3 className="text-base font-semibold text-gray-900 truncate">
+            {name}
+          </h3>
+          <span className="flex items-center gap-1 text-sm font-medium text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full">
             ⭐ {avgRating}
           </span>
-          • <span className="ml-2">{deliveryTime}</span>
         </div>
-        <p className="text-sm text-gray-500 truncate">
-            {costForTwo}
-        </p>
+
+        <p className="text-sm text-gray-600 truncate">{cuisines.join(", ")}</p>
+
+        <div className="flex justify-between items-center text-sm text-gray-500 mt-2">
+          <span>{sla?.deliveryTime} min</span>
+          <span>{costForTwo}</span>
+        </div>
       </div>
     </div>
   );
