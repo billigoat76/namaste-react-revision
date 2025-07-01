@@ -1,7 +1,9 @@
+import { IMAGE_CDN
 
+ } from "../utils/constants";
 export default function RestaurantCard({ resData }) {
   const { name, avgRating, sla, cuisines, costForTwo, cloudinaryImageId } = resData;
-  const imageUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`;
+  const imageUrl = `${IMAGE_CDN}${cloudinaryImageId}`;
 
   return (
     <div className="w-72 bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">

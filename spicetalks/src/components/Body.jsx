@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI"; // Import shimmer component
 import axios from "axios";
 import RestaurantCard from "./RestaurantCard";
-
+import { EXTERNAL_API } from "../utils/constants";
 export default function Body() {
   const [resList, setResList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
@@ -12,7 +12,7 @@ export default function Body() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.652101243346006&lng=77.09910739213228&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+            EXTERNAL_API
         );
         const restData =
           response.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
