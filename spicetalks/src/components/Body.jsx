@@ -4,20 +4,20 @@ import axios from "axios";
 import RestaurantCard from "./RestaurantCard";
 import { EXTERNAL_API } from "../utils/constants";
 import useOnlineStatus from "../hooks/useOnlineStatus";
-
-
+import { Link } from "react-router-dom";
+import { withOpenLabel } from "./RestaurantCard";
 export default function Body() {
   const [resList, setResList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
+  const OpenedRestaurantCard = withOpenLabel(RestaurantCard);
+
   useEffect(() => {
     // You can't use async directly in useEffect
     async function fetchData() {
       try {
-        const response = await axios.get(
-            EXTERNAL_API
-        );
+        const response = await axios.get(EXTERNAL_API);
         const restData =
           response.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
             ?.restaurants;
@@ -36,11 +36,10 @@ export default function Body() {
     setFilteredList(topres);
   }
 
-  if(!onlineStatus){
-    return(
-      <h1>It looks like you are offline!!</h1>
-    )
+  if (!onlineStatus) {
+    return <h1>It looks like you are offline!!</h1>;
   }
+  console.log(filteredList[0].info.isOpen);
   return (
     <main className="bg-cream min-h-screen p-6">
       {/* Search Bar */}
@@ -51,12 +50,19 @@ export default function Body() {
             placeholder="Search for restaurants..."
             className="w-full sm:w-80 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300"
             value={searchText}
-             onChange={(e) => { setSearchText(e.target.value); console.log(searchText) }}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
           />
-          <button className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-orange-600 transition cursor-pointer" onClick={()=> {
-           const searchFiltered =  resList.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
-            setFilteredList(searchFiltered);
-          }}>
+          <button
+            className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-orange-600 transition cursor-pointer"
+            onClick={() => {
+              const searchFiltered = resList.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredList(searchFiltered);
+            }}
+          >
             Search
           </button>
           <button
@@ -74,10 +80,16 @@ export default function Body() {
       ) : (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 max-w-7xl mx-auto">
           {filteredList.map((restaurant) => (
-            <RestaurantCard
+            <Link
+              to={`/restaurants/${restaurant.info.id}`}
               key={restaurant.info.id}
-              resData={restaurant.info}
-            />
+            >
+              {restaurant.info.isOpen ? (
+                <OpenedRestaurantCard resData={restaurant.info} />
+              ) : (
+                <RestaurantCard resData={restaurant.info} />
+              )}
+            </Link>
           ))}
         </div>
       )}
