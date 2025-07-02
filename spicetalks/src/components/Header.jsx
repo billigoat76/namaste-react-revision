@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 export default function Header() {
+  const onlineStatus = useOnlineStatus();
+  console.log(onlineStatus)
   return (
     <header className="bg-cream text-gray-500 border-b-2 border-red-600 px-8 py-4 flex items-center justify-between">
       {/* Logo */}
@@ -19,9 +22,11 @@ export default function Header() {
 
       {/* Navigation */}
       <nav className="flex gap-8 text-lg font-medium">
+        <li className='list-none'>Online Status : {!onlineStatus ? '🔴' : '🟢' }</li>
         <Link to="/" className="hover:text-red-500 transition-colors">Home</Link>
         <Link to="/about" className="hover:text-red-500 transition-colors">About Us</Link>
         <Link to="/contact" className="hover:text-red-500 transition-colors">Contact Us</Link>
+        <Link to="/grocery" className="hover:text-red -500 transition-colors">Grocery</Link>
         <Link to="/cart" className="hover:text-red -500 transition-colors">Cart</Link>
       </nav>
     </header>

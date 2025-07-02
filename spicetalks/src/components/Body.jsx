@@ -3,10 +3,14 @@ import ShimmerUI from "./ShimmerUI"; // Import shimmer component
 import axios from "axios";
 import RestaurantCard from "./RestaurantCard";
 import { EXTERNAL_API } from "../utils/constants";
+import useOnlineStatus from "../hooks/useOnlineStatus";
+
+
 export default function Body() {
   const [resList, setResList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const onlineStatus = useOnlineStatus();
   useEffect(() => {
     // You can't use async directly in useEffect
     async function fetchData() {
@@ -32,6 +36,11 @@ export default function Body() {
     setFilteredList(topres);
   }
 
+  if(!onlineStatus){
+    return(
+      <h1>It looks like you are offline!!</h1>
+    )
+  }
   return (
     <main className="bg-cream min-h-screen p-6">
       {/* Search Bar */}
