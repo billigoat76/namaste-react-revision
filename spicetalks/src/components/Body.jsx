@@ -39,7 +39,6 @@ export default function Body() {
   if (!onlineStatus) {
     return <h1>It looks like you are offline!!</h1>;
   }
-  console.log(filteredList[0].info.isOpen);
   return (
     <main className="bg-cream min-h-screen p-6">
       {/* Search Bar */}
