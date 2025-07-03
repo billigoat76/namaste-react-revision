@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
 import CategoryAccordion from "./CategoryAccordion";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resMenu = useRestaurantMenu(resId);
-
+  const [showIndex,setShowIndex] = useState(0);
   //const restaurantInfo = resMenu[0]?.card?.card?.info;
 
   const categories = resMenu?.filter(
@@ -33,10 +34,12 @@ const RestaurantMenu = () => {
         </div>
       )} */}
 
-      {categories?.map((category) => (
+      {categories?.map((category,index) => (
         <CategoryAccordion
           key={category.card.card.title}
           title={category.card.card.title}
+          showItems={index === showIndex}
+          setShowIndex = {()=>{setShowIndex(index)}}
           items={category.card.card.itemCards}
         />
       ))}
