@@ -1,6 +1,5 @@
 import { IMAGE_CDN } from "../utils/constants";
 export default function ItemsList({ items }) {
-
   return (
     <div className="px-6 py-4 space-y-6 bg-gray-50">
       {items?.map((itemCard) => {
@@ -9,7 +8,7 @@ export default function ItemsList({ items }) {
           <div key={item.id} className="flex justify-between gap-4 border-b pb-6">
             <div className="flex-1">
               <h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
-              <p className="text-base text-gray-800 font-semibold">₹{item.price / 100}</p>
+              <p className="text-base text-gray-800 font-semibold">₹{item.defaultPrice/100 || item.price/100 }</p>
               {item.description && <p className="text-sm text-gray-600 mt-1">{item.description}</p>}
             </div>
             {item.imageId && (
@@ -19,6 +18,7 @@ export default function ItemsList({ items }) {
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
+              
               </div>
             )}
           </div>

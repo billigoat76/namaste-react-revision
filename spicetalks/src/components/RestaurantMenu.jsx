@@ -16,6 +16,7 @@ const RestaurantMenu = () => {
   );
 
   const firstItemImageId = categories?.[0]?.card?.card?.itemCards?.[0]?.card?.info?.imageId;
+  
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* {restaurantInfo && (
