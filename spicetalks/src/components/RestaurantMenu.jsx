@@ -6,7 +6,7 @@ import { useState } from "react";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resMenu = useRestaurantMenu(resId);
-  const [showIndex,setShowIndex] = useState(0);
+  const [showIndex, setShowIndex] = useState(0);
   //const restaurantInfo = resMenu[0]?.card?.card?.info;
 
   const categories = resMenu?.filter(
@@ -15,8 +15,9 @@ const RestaurantMenu = () => {
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
 
-  const firstItemImageId = categories?.[0]?.card?.card?.itemCards?.[0]?.card?.info?.imageId;
-  
+  const firstItemImageId =
+    categories?.[0]?.card?.card?.itemCards?.[0]?.card?.info?.imageId;
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* {restaurantInfo && (
@@ -35,12 +36,14 @@ const RestaurantMenu = () => {
         </div>
       )} */}
 
-      {categories?.map((category,index) => (
+      {categories?.map((category, index) => (
         <CategoryAccordion
           key={category.card.card.title}
           title={category.card.card.title}
           showItems={index === showIndex}
-          setShowIndex = {()=>{setShowIndex(index)}}
+          setShowIndex={() => {
+            setShowIndex(index === showIndex ? null : index);
+          }}
           items={category.card.card.itemCards}
         />
       ))}

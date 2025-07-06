@@ -8,7 +8,10 @@ export default function CategoryAccordion({ title, items , showItems,setShowInde
       {/* Accordion Header */}
       <div
         className="flex justify-between items-center px-6 py-4 bg-white hover:bg-gray-50 cursor-pointer transition duration-300"
-        onClick={()=>{setShowIndex()}}
+        onClick={()=>{
+           
+          setShowIndex()
+        }}
       >
         <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
         <span className="text-gray-500 text-lg">{showItems ? "−" : "+"}</span>
