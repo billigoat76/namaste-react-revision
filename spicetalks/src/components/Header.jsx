@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import { useSelector } from "react-redux";
 export default function Header() {
   const onlineStatus = useOnlineStatus();
-  console.log(onlineStatus)
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <header className="bg-cream text-gray-500 border-b-2 border-red-600 px-8 py-4 flex items-center justify-between">
       {/* Logo */}
@@ -27,7 +28,7 @@ export default function Header() {
         <Link to="/about" className="hover:text-red-500 transition-colors">About Us</Link>
         <Link to="/contact" className="hover:text-red-500 transition-colors">Contact Us</Link>
         <Link to="/grocery" className="hover:text-red -500 transition-colors">Grocery</Link>
-        <Link to="/cart" className="hover:text-red -500 transition-colors">Cart</Link>
+        <Link to="/cart" className="hover:text-red -500 transition-colors">Cart ({cartItems.length} items)</Link>
       </nav>
     </header>
   );
