@@ -18,7 +18,7 @@ export default function ItemsList({ items }) {
               <h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
               <p className="text-base text-gray-800 font-semibold">₹{item.defaultPrice/100 || item.price/100 }</p>
               {item.description && <p className="text-sm text-gray-600 mt-1">{item.description}</p>}
-              <button className="mt-2 px-4 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition"
+              <button className="mt-2 px-4 py-1 cursor-pointer bg-red-500 text-white text-sm rounded hover:bg-red-600 transition"
               onClick={() => {handleAddItem(item)}}>Add</button>
             </div>
             {item.imageId && (
