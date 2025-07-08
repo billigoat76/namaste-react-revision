@@ -33,7 +33,6 @@ const App = () => {
 };
 
 // creating the routing configuration
-
 export const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -46,11 +45,11 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <ContactUs />,
+        element: <ContactUs/>,
       },
       {
         path: "/about",
-        element: <AboutUs />,
+        element: <AboutUs/>,
       },
       {
         path: "/grocery",
