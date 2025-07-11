@@ -3,9 +3,8 @@ export default function RestaurantCard({ resData }) {
   const { name, avgRating, sla, cuisines, costForTwo, cloudinaryImageId } =
     resData;
   const imageUrl = `${IMAGE_CDN}${cloudinaryImageId}`;
-
   return (
-    <div className="w-72 bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
+    <div className="w-72 bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-testid='rescard'>
       {/* Image */}
       <div className="h-44 w-full bg-gray-100">
         <img src={imageUrl} alt={name} className="w-full h-full object-cover" />

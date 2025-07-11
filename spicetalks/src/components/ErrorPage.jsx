@@ -2,7 +2,6 @@ import { useNavigate ,useRouteError} from "react-router-dom";
 export default function ErrorPage() {
    const navigate = useNavigate(); 
    const error = useRouteError();
-   console.log(error);
   return (
     <div className="min-h-screen bg-red-50 flex flex-col items-center justify-center text-center px-6 py-12">
       <h3 className="text-[60px] sm:text-[30px] font-bold text-red-500 drop-shadow-lg">{error.status} {error.statusText} {error.data}</h3>

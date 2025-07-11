@@ -32,14 +32,15 @@ export default function Body() {
   }, []);
 
   function filterTopRatedRestaurants() {
-    const topres = resList.filter((res) => res.info?.avgRating > 4.4);
+    const topres = resList.filter((res) => res.info?.avgRating >= 4.4);
     setFilteredList(topres);
   }
 
   if (!onlineStatus) {
     return <h1>It looks like you are offline!!</h1>;
   }
-  return (
+  console.log(resList);
+    return (
     <main className="bg-cream min-h-screen p-6">
       {/* Search Bar */}
       <div className="mb-6 flex justify-center">

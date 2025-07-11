@@ -7,7 +7,6 @@ export default function ItemsList({ items }) {
   function handleAddItem(item){
     dispatch(addItem(item))
   }
-  console.log(items)
   return (
     <div className="px-6 py-4 space-y-6 bg-gray-50">
       {items?.map((itemCard) => {
